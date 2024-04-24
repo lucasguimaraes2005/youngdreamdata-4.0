@@ -5,6 +5,10 @@ import { Input } from '../ui/input';
 import { Button } from '../ui/button';
 import { useForm } from 'react-hook-form';
 import { Label } from '@radix-ui/react-label';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useRouter } from 'next/router';
+
 
 interface LoginFormInputs {
     email: string;
@@ -13,9 +17,28 @@ interface LoginFormInputs {
 
 export const LoginForm: React.FC = () => {
     const { register, handleSubmit, formState: { errors } } = useForm<LoginFormInputs>();
+    const router = useRouter();
 
-    const onSubmit = (data: LoginFormInputs) => {
-        console.log('Dados do formulário:', data);
+    const onSubmit = async (data: LoginFormInputs) => {
+        const response = await fetch('/api/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
+
+        if (response.ok) {
+            const result = await response.json();
+            localStorage.setItem('token', result.token);
+            toast.success(result.message);
+            setTimeout(() => {
+                router.push('/dashboard');
+            }, 2000);
+        } else {
+            const error = await response.json();
+            toast.error(error.error);
+        }
     };
 
     return (

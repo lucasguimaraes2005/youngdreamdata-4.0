@@ -1,5 +1,6 @@
 import { Box } from "@/components/Box/Box";
 import { Button } from "@/components/ui/button";
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
