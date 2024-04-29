@@ -12,7 +12,7 @@ import { useRouter } from 'next/router';
 
 interface LoginFormInputs {
     email: string;
-    password: string;
+    senha: string;
 }
 
 export const LoginForm: React.FC = () => {
@@ -64,9 +64,9 @@ export const LoginForm: React.FC = () => {
                             type="password"
                             placeholder="Senha"
                             className="bg-black border border-gray-800 text-white"
-                            {...register("password", { required: true })}
+                            {...register("senha", { required: true })}
                         />
-                        {errors.password && <p className="text-red-500">Senha obrigatória</p>}
+                        {errors.senha && <p className="text-red-500">Senha obrigatória</p>}
                     </div>
                     <Button type="submit" className="w-full border border-gray-800" variant="secondary">
                         Entrar
