@@ -2,6 +2,7 @@ import { RegisterForm } from "@/components/RegisterForm/registerform";
 import { Button } from '../components/ui/button';
 import Link from 'next/link';
 import "../app/globals.css"
+import { ToastContainer } from "react-toastify";
 
 export default function Register() {
     return (
@@ -15,6 +16,7 @@ export default function Register() {
                 </Link>
             </div>
             <RegisterForm />
+            <ToastContainer />
         </div>
     );
 };

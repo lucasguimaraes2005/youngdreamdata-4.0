@@ -1,7 +1,8 @@
 import "../app/globals.css"
 import Link from 'next/link';
 import { Button } from '../components/ui/button';
-import { AlunoModal } from "@/components/AlunoModal/AlunoModal";
+import  AlunoModal  from "@/components/AlunoModal/AlunoModal";
+import { ToastContainer } from "react-toastify";
 
 export default function Dashboard() {
     return (
@@ -17,6 +18,7 @@ export default function Dashboard() {
                 <AlunoModal />
             </div>
             </div>
+
         </>
     )
 }

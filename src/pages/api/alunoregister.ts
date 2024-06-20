@@ -1,34 +1,37 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { prisma } from '../../../database';
+import { PrismaClient } from '@prisma/client';
 
-interface AlunoBody {
-  nome: string;
-  idade: number;
-  turma: string;
-  professorId: number;
-  professor: string;
-}
+const prisma = new PrismaClient();
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-): Promise<void> {
-  const { nome, idade, turma, professorId, professor }: AlunoBody = req.body;
+
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  console.log("aaa")
+
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
+
+  console.log('req.body:', req.body);
+
+  const { nome, idade, turma, professorId } = req.body;
 
   try {
-    await prisma.aluno.create({
+    const aluno = await prisma.aluno.create({
       data: {
         nome,
         idade,
         turma,
-        professorId,
-        professor,
+        professor: {
+          connect: {
+            id: professorId,
+          },
+        },
       },
     });
 
-    res.status(201).json({ message: 'Aluno cadastrado com sucesso!' });
-  } catch (error) {
-    console.error('Erro ao cadastrar aluno:', error);
-    res.status(500).json({ error: 'Erro interno do servidor.' });
+    return res.status(201).json({ message: 'Aluno cadastrado com sucesso!' });
+  } catch (error: any) {
+    console.error(error);
+    return res.status(500).json({ error: 'Erro interno do servidor', message: error.message, stack: error.stack });
   }
 }

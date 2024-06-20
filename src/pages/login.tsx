@@ -2,6 +2,7 @@ import { LoginForm } from "@/components/LoginForm/loginform";
 import { Button } from '../components/ui/button';
 import Link from 'next/link';
 import "../app/globals.css"
+import { ToastContainer } from "react-toastify";
 
 export default function Login() {
     return (
@@ -14,6 +15,7 @@ export default function Login() {
                     <Button variant="secondary">Voltar</Button>
                 </Link>
             </div>
+            <ToastContainer />
             <LoginForm />
         </div>
     );

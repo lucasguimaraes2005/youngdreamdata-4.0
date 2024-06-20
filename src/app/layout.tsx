@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         {children}
-        <ToastContainer />
+        <ToastContainer style={{ position: 'absolute', top: 0, right: 0 }} />
       </body>
     </html>
   );
