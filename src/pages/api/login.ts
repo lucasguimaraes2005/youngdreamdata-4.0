@@ -32,7 +32,16 @@ export default async function handler(
     return res.status(401).json({ error: 'Email ou senha inválidos' });
   }
 
+
+  const professorDetails = {
+    id: user.id,
+    nome: user.nome,
+    email: user.email,
+    instituicao: user.instituicao,
+
+  };
+
   const token = jwt.sign({ email }, '97dc3f2852a79202f397d1714672f181fadf5b1a', { expiresIn: '1h' });
 
-  res.status(200).json({ message: 'Login bem-sucedido!', token });
+  res.status(200).json({ message: 'Login bem-sucedido!', token, professor: professorDetails });
 }

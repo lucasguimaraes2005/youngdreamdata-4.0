@@ -28,11 +28,14 @@ export const RegisterForm: React.FC = () => {
             },
             body: JSON.stringify(data),
           });
-    
+
           if (response.ok) {
             const result = await response.json();
             toast.success(result.message); 
             localStorage.setItem('token', result.token);
+            localStorage.setItem('professorId', result.professor.id.toString());
+            localStorage.setItem('professorEmail', result.professor.email);
+
             setTimeout(() => {
                 router.push('/dashboard');
             }, 2000);

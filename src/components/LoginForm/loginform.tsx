@@ -31,6 +31,8 @@ export const LoginForm: React.FC = () => {
         if (response.ok) {
             const result = await response.json();
             localStorage.setItem('token', result.token);
+            localStorage.setItem('professorId', result.professor.id.toString());
+            localStorage.setItem('professorEmail', result.professor.email);
             toast.success(result.message);
             setTimeout(() => {
                 router.push('/dashboard');

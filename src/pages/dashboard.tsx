@@ -1,6 +1,7 @@
 import "../app/globals.css"
 import Link from 'next/link';
 import { Button } from '../components/ui/button';
+import { AlunoModal } from "@/components/AlunoModal/AlunoModal";
 
 export default function Dashboard() {
     return (
@@ -13,7 +14,7 @@ export default function Dashboard() {
                 <Link href="/" passHref>
                     <Button variant="secondary">Sair</Button>
                 </Link>
-                <Button variant="secondary">Cadastre um aluno</Button>
+                <AlunoModal />
             </div>
             </div>
         </>
