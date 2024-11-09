@@ -30,4 +30,5 @@ model Aluno {
   turma     String
   professor Professor @relation(fields: [professorId], references: [id])
   professorId Int
+  faceData    String?
 }
