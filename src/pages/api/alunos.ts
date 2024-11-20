@@ -7,6 +7,7 @@ interface AlunosResponse {
     nome: string;
     idade: number;
     turma: string;
+    faceData?: string;
   }[];
 }
 
